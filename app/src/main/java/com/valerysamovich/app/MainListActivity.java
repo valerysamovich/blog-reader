@@ -17,6 +17,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -88,6 +91,7 @@ public class MainListActivity extends ListActivity {
 
                 responceCode = connection.getResponseCode();
 
+                // if connection is 200
                 if (responceCode == HttpURLConnection.HTTP_OK) {
                     InputStream inputStream = connection.getInputStream();
                     Reader reader = new InputStreamReader(inputStream);
@@ -96,10 +100,21 @@ public class MainListActivity extends ListActivity {
                     int contentLength = connection.getContentLength();
                     char[] charArray = new char[contentLength];
                     reader.read(charArray);
+
                     // Convert array to string
                     String responseData = new String(charArray);
-                    Log.v(TAG, responseData);
 
+                    JSONObject jsonResponse = new JSONObject(responseData);
+                    String status = jsonResponse.getString("status");
+                    Log.v(TAG, status);
+
+                    // Loop throw the posts and display
+                    JSONArray jsonPosts = jsonResponse.getJSONArray("posts");
+                    for (int i = 0; i < jsonPosts.length(); i++) {
+                        JSONObject jsonPost = jsonPosts.getJSONObject(i);
+                        String title = jsonPost.getString("title");
+                        Log.v(TAG, "Post" + i + ": " + title);
+                    }
                 } else {
                     Log.i(TAG, "Unsuccessful HTTP Response Code: "
                             + responceCode);
