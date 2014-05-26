@@ -18,6 +18,9 @@ import android.view.Menu;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -77,14 +80,30 @@ public class MainListActivity extends ListActivity {
 
             try {
                 URL blogFeedUrl;
-                blogFeedUrl = new URL("http://blog.teamtreehouse.com/api/get_recent_summary/?count="
-                        + NUMBER_OF_POSTS);
+                blogFeedUrl = new URL("http://blog.teamtreehouse.com/api" +
+                        "/get_recent_summary/?count=" + NUMBER_OF_POSTS);
                 HttpURLConnection connection = (HttpURLConnection)
                         blogFeedUrl.openConnection();
                 connection.connect();
 
                 responceCode = connection.getResponseCode();
-                Log.i(TAG, "Code: " + responceCode);
+
+                if (responceCode == HttpURLConnection.HTTP_OK) {
+                    InputStream inputStream = connection.getInputStream();
+                    Reader reader = new InputStreamReader(inputStream);
+
+                    // Store data in array of char
+                    int contentLength = connection.getContentLength();
+                    char[] charArray = new char[contentLength];
+                    reader.read(charArray);
+                    // Convert array to string
+                    String responseData = new String(charArray);
+                    Log.v(TAG, responseData);
+
+                } else {
+                    Log.i(TAG, "Unsuccessful HTTP Response Code: "
+                            + responceCode);
+                }
 
             } catch (MalformedURLException e) {
                 Log.e(TAG, "Exception caught: ", e);
