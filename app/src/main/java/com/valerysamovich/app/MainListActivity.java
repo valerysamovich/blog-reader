@@ -3,6 +3,7 @@
  * Copyright (c) Valery Samovich. All rights reserved.
  * Author: Valery Samovich
  * Date: 2014/05/26
+ * TODO Finishing Our AsyncTask
  */
 
 package com.valerysamovich.app;
@@ -119,7 +120,6 @@ public class MainListActivity extends ListActivity {
                     Log.i(TAG, "Unsuccessful HTTP Response Code: "
                             + responceCode);
                 }
-
             } catch (MalformedURLException e) {
                 Log.e(TAG, "Exception caught: ", e);
             } catch (IOException e) {
