@@ -3,7 +3,6 @@
  * Copyright (c) Valery Samovich. All rights reserved.
  * Author: Valery Samovich
  * Date: 2014/05/26
- * TODO Finishing Our AsyncTask
  */
 
 package com.valerysamovich.app;
@@ -18,7 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.widget.Toast;
 
-import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -34,6 +33,7 @@ public class MainListActivity extends ListActivity {
     protected String[] mAndroidNames;
     public static final int NUMBER_OF_POSTS = 20;
     public static final String TAG = MainListActivity.class.getSimpleName();
+    protected JSONObject mBlogData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,15 +72,28 @@ public class MainListActivity extends ListActivity {
         return true;
     }
 
-    /*
+    private void updateList() {
+        if (mBlogData == null) {
+            // TODO: Handle error
+        } else {
+            try {
+                Log.d(TAG, mBlogData.toString(2));
+            } catch (JSONException e) {
+                Log.e(TAG, "Exception caught!", e);
+            }
+        }
+    }
+
+    /**
      * AsyncTask
      */
-    private class GetBlogPostsTask extends AsyncTask<Object, Void, String> {
+    private class GetBlogPostsTask extends AsyncTask<Object, Void, JSONObject> {
 
         @Override
-        protected String doInBackground(Object... arg0) {
+        protected JSONObject doInBackground(Object... arg0) {
 
-            int responceCode = -1;
+            int responseCode = -1;
+            JSONObject jsonResponse = null;
 
             try {
                 URL blogFeedUrl;
@@ -90,10 +103,10 @@ public class MainListActivity extends ListActivity {
                         blogFeedUrl.openConnection();
                 connection.connect();
 
-                responceCode = connection.getResponseCode();
+                responseCode = connection.getResponseCode();
 
                 // if connection is 200
-                if (responceCode == HttpURLConnection.HTTP_OK) {
+                if (responseCode == HttpURLConnection.HTTP_OK) {
                     InputStream inputStream = connection.getInputStream();
                     Reader reader = new InputStreamReader(inputStream);
 
@@ -105,20 +118,10 @@ public class MainListActivity extends ListActivity {
                     // Convert array to string
                     String responseData = new String(charArray);
 
-                    JSONObject jsonResponse = new JSONObject(responseData);
-                    String status = jsonResponse.getString("status");
-                    Log.v(TAG, status);
-
-                    // Loop throw the posts and display
-                    JSONArray jsonPosts = jsonResponse.getJSONArray("posts");
-                    for (int i = 0; i < jsonPosts.length(); i++) {
-                        JSONObject jsonPost = jsonPosts.getJSONObject(i);
-                        String title = jsonPost.getString("title");
-                        Log.v(TAG, "Post" + i + ": " + title);
-                    }
+                    jsonResponse = new JSONObject(responseData);
                 } else {
                     Log.i(TAG, "Unsuccessful HTTP Response Code: "
-                            + responceCode);
+                            + responseCode);
                 }
             } catch (MalformedURLException e) {
                 Log.e(TAG, "Exception caught: ", e);
@@ -128,8 +131,16 @@ public class MainListActivity extends ListActivity {
                 Log.e(TAG, "Exception caught: ", e);
             }
 
-            return "Code: " + responceCode;
+            return jsonResponse;
         }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            mBlogData = result;
+            updateList();
+
+        }
+
     }
 
 }
