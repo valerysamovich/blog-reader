@@ -1,6 +1,10 @@
 /**
+ * No code from this file may not be reproduced, altered or further distributed
+ * by any means whether printed, electronic or otherwise without the prior
+ * written consent of author. If you have any questions please do not hesitate
+ * to contact me: http://www.linkedin.com/pub/valery-samovich/22/81/1bb/
+ *
  * FileName - MainListActivity.java
- * Copyright (c) Valery Samovich. All rights reserved.
  * Author: Valery Samovich
  * Date: 2014/05/26
  */
@@ -13,10 +17,13 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,7 +37,7 @@ import java.net.URL;
 
 public class MainListActivity extends ListActivity {
 
-    protected String[] mAndroidNames;
+    protected String[] mBlogPostTitles;
     public static final int NUMBER_OF_POSTS = 20;
     public static final String TAG = MainListActivity.class.getSimpleName();
     protected JSONObject mBlogData;
@@ -77,7 +84,20 @@ public class MainListActivity extends ListActivity {
             // TODO: Handle error
         } else {
             try {
-                Log.d(TAG, mBlogData.toString(2));
+                JSONArray jsonPosts = mBlogData.getJSONArray("posts");
+                mBlogPostTitles = new String[jsonPosts.length()];
+                for (int i = 0; i <jsonPosts.length(); i++) {
+                    JSONObject post = jsonPosts.getJSONObject(i);
+                    String title = post.getString("title");
+                    // Convert html special character
+                    title = Html.fromHtml(title).toString();
+                    mBlogPostTitles[i] = title;
+                }
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                        android.R.layout.simple_list_item_1, mBlogPostTitles);
+                setListAdapter(adapter);
+
             } catch (JSONException e) {
                 Log.e(TAG, "Exception caught!", e);
             }
@@ -92,7 +112,9 @@ public class MainListActivity extends ListActivity {
         @Override
         protected JSONObject doInBackground(Object... arg0) {
 
-            int responseCode = -1;
+            int responseCode;
+            responseCode = -1;
+
             JSONObject jsonResponse = null;
 
             try {
