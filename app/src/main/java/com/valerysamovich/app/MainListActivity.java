@@ -82,11 +82,12 @@ public class MainListActivity extends ListActivity {
 
     private void updateList() {
         if (mBlogData == null) {
-            // Alert Dialog
+            // Create the Alert Dialog Builder Object
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(getString(R.string.errror_title));
+            builder.setTitle(getString(R.string.error_title));
             builder.setMessage(getString(R.string.error_message));
             builder.setPositiveButton(android.R.string.ok, null);
+            // Create the Alert Dialog and show
             AlertDialog dialog = builder.create();
             dialog.show();
         } else {
