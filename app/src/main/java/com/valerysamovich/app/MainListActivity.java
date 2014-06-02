@@ -120,7 +120,7 @@ public class MainListActivity extends ListActivity {
     }
 
     /**
-     * Check is data availability
+     * Check the data availability
      */
     private void updateDisplayForError() {
         // Create the Alert Dialog Builder Object
