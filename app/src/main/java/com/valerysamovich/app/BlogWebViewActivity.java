@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.webkit.WebView;
 
 
 public class BlogWebViewActivity extends Activity {
 
+    protected String mUrl;
     /**
      * Create intent and display web page within the app
      * @param savedInstanceState // TODO: description
@@ -21,8 +23,10 @@ public class BlogWebViewActivity extends Activity {
 
         Intent intent = getIntent();
         Uri blogUri = intent.getData();
+        mUrl = blogUri.toString();
+
         WebView webView = (WebView) findViewById(R.id.webView);
-        webView.loadUrl(blogUri.toString());
+        webView.loadUrl(mUrl);
     }
 
     /**
@@ -37,6 +41,28 @@ public class BlogWebViewActivity extends Activity {
         return true;
     }
 
-    // TODO: Easy Sharing with Intents
+    /**
+     * execute
+     * @param item blog post
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.action_share) {
+            sharePost();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
+    /**
+     *
+     */
+    private void sharePost() {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, mUrl);
+        startActivity(Intent.createChooser(
+                shareIntent, getString(R.string.share_chooser_title)));
+    }
 }
