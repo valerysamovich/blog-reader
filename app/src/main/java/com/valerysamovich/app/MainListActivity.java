@@ -76,10 +76,10 @@ public class MainListActivity extends ListActivity {
 
     /**
      * Click activity for post
-     * @param l
-     * @param v
-     * @param position
-     * @param id
+     * @param l         // TODO:description
+     * @param v         // TODO:description
+     * @param position  // TODO:description
+     * @param id        // TODO:description
      */
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
@@ -194,8 +194,7 @@ public class MainListActivity extends ListActivity {
         @Override
         protected JSONObject doInBackground(Object... arg0) {
 
-            int responseCode;
-            responseCode = -1;
+            int responseCode = -1;
 
             JSONObject jsonResponse = null;
 
