@@ -8,7 +8,7 @@
 
     <!-- Allows applications to open network sockets. -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- Allows applications to access information about networks  -->
+    <!-- Allows applications to access information about networks -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -24,6 +24,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.valerysamovich.app.BlogWebViewActivity"
+            android:label="@string/title_activity_blog_web_view" >
         </activity>
     </application>
 

@@ -88,7 +88,8 @@ public class MainListActivity extends ListActivity {
             JSONArray jsonPosts = mBlogData.getJSONArray("posts");
             JSONObject jsonPost = jsonPosts.getJSONObject(position);
             String blogUrl = jsonPost.getString("url");
-            Intent intent = new Intent(Intent.ACTION_VIEW);
+            // Explicit intent
+            Intent intent = new Intent(this, BlogWebViewActivity.class);
             intent.setData(Uri.parse(blogUrl));
             startActivity(intent);
         } catch (JSONException e) {
@@ -98,7 +99,7 @@ public class MainListActivity extends ListActivity {
 
     /**
      * Logging the exception
-     * @param e
+     * @param e exception variable
      */
     private void logException(Exception e) {
         Log.e(TAG, "Exception caught!", e);
