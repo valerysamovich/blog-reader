@@ -1,15 +1,7 @@
 /**
- * Copyright (C) 2014 Valery Samovich - The Android Open Source Project
- * If you have any questions please do not hesitate to contact me:
- *
- *      File name - BlogWebViewActivity.java
- *      Author: Valery Samovich
- *      Original Date: 2014/05/26
- *      http://www.linkedin.com/pub/valery-samovich/22/81/1bb/
- *
- * The code from this project can be use for learning, training and teaching
- * purposes. Any files from this project can not be used for advertising or
- * commercial use, without prior written consent of author.
+ * @file name - BlogWebViewActivity.java
+ * @author: Valery Samovich
+ * @date: 2014/05/26
  */
 
 package com.valerysamovich.app;
@@ -46,7 +38,7 @@ public class BlogWebViewActivity extends Activity {
     /**
      * Create option for menu
      * @param menu represent the action bar
-     * @return
+     * @return menu true or false
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -58,7 +50,7 @@ public class BlogWebViewActivity extends Activity {
     /**
      * Execute share option
      * @param item blog post
-     * @return
+     * @return item selected item
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

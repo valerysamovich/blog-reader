@@ -1,15 +1,7 @@
 /**
- * Copyright (C) 2014 Valery Samovich - The Android Open Source Project
- * If you have any questions please do not hesitate to contact me:
- *
- *      File name - MainListActivity.java
- *      Author: Valery Samovich
- *      Original Date: 2014/05/26
- *      http://www.linkedin.com/pub/valery-samovich/22/81/1bb/
- *
- * The code from this project can be use for learning, training and teaching
- * purposes. Any files from this project can not be used for advertising,
- * commercial use, without prior written consent of author.
+ * @file name - MainListActivity.java
+ * @author: Valery Samovich
+ * @date: 2014/05/26
  */
 
 package com.valerysamovich.app;
@@ -56,6 +48,10 @@ public class MainListActivity extends ListActivity {
     private final String KEY_TITLE = "title";
     private final String KEY_AUTHOR = "author";
 
+    /**
+     * Called when the activity is starting.
+     * @param savedInstanceState re-initialized activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -202,7 +198,7 @@ public class MainListActivity extends ListActivity {
          * by the caller of this task.
          *
          * @param arg0 arguments
-         * @return
+         * @return jsonResponse
          */
         @Override
         protected JSONObject doInBackground(Object... arg0) {
@@ -253,7 +249,7 @@ public class MainListActivity extends ListActivity {
         /**
          * Runs on the UI thread after {@link #doInBackground}. The specified
          * result is the value returned by {@link #doInBackground}.</p>
-         * @param result
+         * @param result blog data
          */
         @Override
         protected void onPostExecute(JSONObject result) {
