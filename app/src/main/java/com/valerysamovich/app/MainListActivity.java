@@ -1,12 +1,15 @@
 /**
- * No code from this file may not be reproduced, altered or further distributed
- * by any means whether printed, electronic or otherwise without the prior
- * written consent of author. If you have any questions please do not hesitate
- * to contact me: http://www.linkedin.com/pub/valery-samovich/22/81/1bb/
+ * Copyright (C) 2014 Valery Samovich - The Android Open Source Project
+ * If you have any questions please do not hesitate to contact me:
  *
- * FileName - MainListActivity.java
- * Author: Valery Samovich
- * Date: 2014/05/26
+ *      File name - MainListActivity.java
+ *      Author: Valery Samovich
+ *      Original Date: 2014/05/26
+ *      http://www.linkedin.com/pub/valery-samovich/22/81/1bb/
+ *
+ * The code from this project can be use for learning, training and teaching
+ * purposes. Any files from this project can not be used for advertising,
+ * commercial use, without prior written consent of author.
  */
 
 package com.valerysamovich.app;
@@ -75,11 +78,13 @@ public class MainListActivity extends ListActivity {
     }
 
     /**
-     * Click activity for post
-     * @param l         // TODO:description
-     * @param v         // TODO:description
-     * @param position  // TODO:description
-     * @param id        // TODO:description
+     * This method will be called when an item in the list is selected. Click
+     * activity on post selection.
+     *
+     * @param l         The ListView where the click happened
+     * @param v         The view that was clicked within the ListView
+     * @param position  The position of the view in the list
+     * @param id        The row id of the item that was clicked
      */
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
@@ -98,8 +103,8 @@ public class MainListActivity extends ListActivity {
     }
 
     /**
-     * Logging the exception
-     * @param e exception variable
+     * Logging the exception method
+     * @param e     Exception variable
      */
     private void logException(Exception e) {
         Log.e(TAG, "Exception caught!", e);
@@ -191,6 +196,14 @@ public class MainListActivity extends ListActivity {
      */
     private class GetBlogPostsTask extends AsyncTask<Object, Void, JSONObject> {
 
+        /**
+         * Override this method to perform a computation on a background thread.
+         * The specified parameters are the parameters passed to {@link #execute}
+         * by the caller of this task.
+         *
+         * @param arg0 arguments
+         * @return
+         */
         @Override
         protected JSONObject doInBackground(Object... arg0) {
 
@@ -237,6 +250,11 @@ public class MainListActivity extends ListActivity {
             return jsonResponse;
         }
 
+        /**
+         * Runs on the UI thread after {@link #doInBackground}. The specified
+         * result is the value returned by {@link #doInBackground}.</p>
+         * @param result
+         */
         @Override
         protected void onPostExecute(JSONObject result) {
             mBlogData = result;

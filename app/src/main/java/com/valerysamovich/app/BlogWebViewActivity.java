@@ -1,3 +1,17 @@
+/**
+ * Copyright (C) 2014 Valery Samovich - The Android Open Source Project
+ * If you have any questions please do not hesitate to contact me:
+ *
+ *      File name - BlogWebViewActivity.java
+ *      Author: Valery Samovich
+ *      Original Date: 2014/05/26
+ *      http://www.linkedin.com/pub/valery-samovich/22/81/1bb/
+ *
+ * The code from this project can be use for learning, training and teaching
+ * purposes. Any files from this project can not be used for advertising or
+ * commercial use, without prior written consent of author.
+ */
+
 package com.valerysamovich.app;
 
 import android.app.Activity;
@@ -8,13 +22,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 
-
 public class BlogWebViewActivity extends Activity {
 
     protected String mUrl;
+
     /**
      * Create intent and display web page within the app
-     * @param savedInstanceState // TODO: description
+     * @param savedInstanceState create instance state
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +45,7 @@ public class BlogWebViewActivity extends Activity {
 
     /**
      * Create option for menu
-     * @param menu // TODO: description
+     * @param menu represent the action bar
      * @return
      */
     @Override
@@ -42,7 +56,7 @@ public class BlogWebViewActivity extends Activity {
     }
 
     /**
-     * execute
+     * Execute share option
      * @param item blog post
      * @return
      */
@@ -56,7 +70,7 @@ public class BlogWebViewActivity extends Activity {
     }
 
     /**
-     *
+     * Share the post with available options
      */
     private void sharePost() {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
