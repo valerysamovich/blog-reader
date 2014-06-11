@@ -10,7 +10,7 @@ Features
 - Share the posts with your friends by email, sms, etc.
 - Get the posts asynchronously.
 - Service: teamtreehouse.
-Can be download from: https://play.google.com/store/apps/details?id=com.valerysamovich.app
+- Download: https://play.google.com/store/apps/details?id=com.valerysamovich.app
 
 Developer info
 --------------
