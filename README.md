@@ -10,9 +10,9 @@ Features
 - Share the posts with your friends by email, sms, etc.
 - Get the posts asynchronously.
 - Service: teamtreehouse.
+Can be download from: https://play.google.com/store/apps/details?id=com.valerysamovich.app
 
 Developer info
 --------------
 
- - http://www.linkedin.com/pub/valery-samovich/22/81/1bb/
- - Can be download from: https://play.google.com/store/apps/details?id=com.valerysamovich.app
+http://www.linkedin.com/pub/valery-samovich/22/81/1bb/
