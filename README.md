@@ -1,7 +1,7 @@
 blog-reader
 ===========
 
-Blog Reader is fast and clean RSS application. Read more about development, programming and computer science.
+Blog Reader is Android fast and clean RSS application. Read more about development, programming and computer science.
 
 Features
 --------
@@ -14,4 +14,5 @@ Features
 Developer info
 --------------
 
-http://www.linkedin.com/pub/valery-samovich/22/81/1bb/
+ - http://www.linkedin.com/pub/valery-samovich/22/81/1bb/
+ - Can be download from: https://play.google.com/store/apps/details?id=com.valerysamovich.app
