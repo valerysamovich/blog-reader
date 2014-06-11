@@ -10,3 +10,6 @@ Features
 - Share the posts with your friends by email, sms, etc.
 - Get the posts asynchronously.
 - Service: teamtreehouse.
+
+Developer info
+--------------
