@@ -11,13 +11,13 @@ Features
 - Get the posts asynchronously.
 - Service: teamtreehouse.
 
-Technical information
----------------------
+Technical info
+--------------
 - Version 1.0.0
 - Compile SDK version 19
 - Download: https://play.google.com/store/apps/details?id=com.valery.crystalball
 
 
-Developer information
----------------------
+Developer info
+--------------
 http://www.linkedin.com/pub/valery-samovich/22/81/1bb/
