@@ -1,6 +1,6 @@
 # Blog reader
 
-> Blog Reader is Android fast and clean **RSS Application**. Read more about development, programming and computer science.
+Blog Reader is Android fast and clean **RSS Application**. Read more about development, programming and computer science.
 
 ## Features
 
